@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>ثَبات | THABAT v0.1</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">THABAT v0.1 · Prototype</p>
+        <h1>ثَبات</h1>
+        <p class="subtitle">تحليل أولي لرفع الذراعين باستخدام كاميرا الجوال</p>
+      </div>
+      <span id="engineBadge" class="badge badge-warn">جارٍ تحميل المحرك…</span>
+    </header>
+
+    <section class="notice" aria-label="تنبيه">
+      <strong>نسخة تجريبية:</strong> القياسات تقريبية وغير مخصصة للتشخيص أو اتخاذ قرارات علاجية.
+    </section>
+
+    <section class="camera-card">
+      <div class="stage" id="stage">
+        <video id="webcam" autoplay playsinline muted></video>
+        <canvas id="overlay"></canvas>
+        <div id="cameraPlaceholder" class="placeholder">
+          <div class="camera-icon">◉</div>
+          <h2>اختبار رفع الذراعين</h2>
+          <p>ثبتي الهاتف أمام الجزء العلوي من الجسم، ثم اضغطي «تشغيل الكاميرا».</p>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="startBtn" class="primary" disabled>تشغيل الكاميرا</button>
+        <button id="voiceBtn" class="secondary" aria-pressed="true">🔊 التوجيه الصوتي: مفعّل</button>
+      </div>
+      <p id="statusText" class="status" role="status" aria-live="polite">نجهّز نموذج تتبع الحركة…</p>
+    </section>
+
+    <section class="metrics-grid" aria-label="القياسات">
+      <article class="metric">
+        <span>الكتف الأيسر</span>
+        <strong id="leftShoulder">—</strong>
+        <small>درجة</small>
+      </article>
+      <article class="metric">
+        <span>الكتف الأيمن</span>
+        <strong id="rightShoulder">—</strong>
+        <small>درجة</small>
+      </article>
+      <article class="metric">
+        <span>التماثل</span>
+        <strong id="symmetry">—</strong>
+        <small>فرق الزاويتين</small>
+      </article>
+      <article class="metric">
+        <span>ميل الجذع</span>
+        <strong id="trunkLean">—</strong>
+        <small>درجة</small>
+      </article>
+    </section>
+
+    <section class="coach-card">
+      <p class="coach-label">THABAT COACH</p>
+      <h2 id="feedbackTitle">جاهزة للبدء</h2>
+      <p id="feedbackText">سنقيس زاوية الكتفين، تماثل الحركة، وميل الجذع أثناء رفع الذراعين.</p>
+      <div class="progress-row">
+        <span>جودة الإطار</span>
+        <div class="progress"><div id="frameQuality" class="progress-fill"></div></div>
+        <strong id="qualityLabel">—</strong>
+      </div>
+    </section>
+
+    <section class="next-card">
+      <h2>ما الذي تثبته هذه النسخة؟</h2>
+      <ul>
+        <li>تشغيل Pose Estimation مباشرة من كاميرا الجهاز.</li>
+        <li>استخراج مفاصل الكتف والمرفق والرسغ والحوض.</li>
+        <li>حساب زوايا الحركة والتماثل لحظيًا.</li>
+        <li>إعطاء Feedback نصي وصوتي بسيط أثناء التمرين.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
